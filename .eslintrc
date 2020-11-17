@@ -195,6 +195,7 @@
     "@typescript-eslint/unbound-method": 0,
     "@typescript-eslint/restrict-template-expressions": "warn",
     "@typescript-eslint/require-await": "warn",
-    "@typescript-eslint/no-floating-promises": 0
+    "@typescript-eslint/no-floating-promises": 0,
+    "no-debugger":"error"
   }
 }

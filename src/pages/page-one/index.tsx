@@ -9,22 +9,22 @@ interface State {
 }
 
 export default class index extends Component<Props, State> {
-test(){
-  const str = 'b'
-  const a = 'a'+ str
-}
+  test() {
+    const str = 'b';
+    const a = 'a' + str;
+  }
   render() {
     return (
       <Resizable
         defaultSize={{
-          width:320,
-          height:200,
+          width: 320,
+          height: 200,
         }}
       >
         <div className="menu-list">
 
         </div>
       </Resizable>
-    )
+    );
   }
 }
