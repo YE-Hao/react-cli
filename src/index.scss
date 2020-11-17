@@ -1,0 +1,24 @@
+.demo{
+  position: relative;
+}
+.demo-url{
+  background: url('../public/grid-background.png') no-repeat;
+}
+.demo-url2{
+  background: url('../public/timg.jpeg') no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-wrapper{
+  display: flex;
+}
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+body,html {
+  height: 100%;
+  width: 100%;
+}

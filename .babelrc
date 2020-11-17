@@ -1,0 +1,19 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "modules":"auto"
+    }],
+    "@babel/react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime", {
+        "corejs": false,
+        "helpers": false,
+        "regenerator": false,
+        "useESModules": true
+      }
+    ]
+  ]
+}

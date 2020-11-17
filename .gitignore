@@ -1,5 +1,19 @@
+# dependencies
+/node_modules
+
+# production
+/build
+/dist
+
+# misc
+.idea/
+.happypack
 .DS_Store
-node_modules/
-.vscode/
-build/
-.vscode/
+/.vscode
+
+.happypack
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn-lock
