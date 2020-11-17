@@ -4,6 +4,6 @@ function index() {
     <>
       <Input/>
     </>
-  )
+  );
 }
 export default index;

@@ -3,4 +3,4 @@ import Select from './select';
 export {
   Input,
   Select,
-}
+};

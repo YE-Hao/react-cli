@@ -12,6 +12,6 @@ export default class Test extends Component {
         <PageOne/>
         <PageTwo/>
       </div>
-    )
+    );
   }
 }

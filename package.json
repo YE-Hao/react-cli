@@ -7,12 +7,11 @@
     "build": "rm -rf ./build && webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server --config webpack.config.dev.js --color --devtool eval-source-map --progress --open",
     "babel": "babel src/ --out-dir dist",
-    "eslint": "eslint src --ext .ts,.tsx"
+    "eslint": "eslint --fix --ext .jsx,.js,.tsx,.ts src --cache"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint --fix --ext .jsx,.js,.tsx,.ts",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "eslint"
     }
   },
   "author": "YE",

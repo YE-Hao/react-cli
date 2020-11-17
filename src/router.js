@@ -1,9 +1,9 @@
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Test from './Test';
 import PageOne from '@/pages/page-one';
 import PageTwo from '@/pages/page-two';
 export default function router() {
-  return(
+  return (
     <Router>
       <Switch>
         <Route exact path="/" component={Test}/>
@@ -11,5 +11,5 @@ export default function router() {
         <Route exact path="/pagetwo" component={PageTwo}/>
       </Switch>
     </Router>
-  )
+  );
 }

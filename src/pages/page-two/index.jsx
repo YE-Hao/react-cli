@@ -5,7 +5,6 @@ export default class index extends Component {
   test() {
     const str = 'b';
     const a = 'a' + str;
-    console.log('a');
   }
   render() {
     return (
