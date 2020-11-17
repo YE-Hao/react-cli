@@ -6,12 +6,13 @@ interface Props {
 }
 
 interface State {
-
+  data?:any
 }
 export default class index extends Component<Props, State> {
   test() {
     const str = 'b';
     const a = 'a' + str;
+    debugger;
   }
   render() {
     return (
