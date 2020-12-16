@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Resizable } from 're-resizable';
+import { Menu } from 'antd';
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import './index.scss';
+import Test from '@/Test';
+const { SubMenu } = Menu;
 interface Props {
   dataSource?: Record<string, unknown>
 }
@@ -9,11 +13,7 @@ interface State {
   data?:any
 }
 export default class index extends Component<Props, State> {
-  test() {
-    const str = 'b';
-    const a = 'a' + str;
-    debugger;
-  }
+  
   render() {
     return (
       <Resizable
@@ -22,8 +22,8 @@ export default class index extends Component<Props, State> {
           height: 200,
         }}
       >
-        <div className="menu-list">
-
+        <div className="left-menu">
+          
         </div>
       </Resizable>
     );

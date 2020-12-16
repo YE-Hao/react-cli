@@ -10,4 +10,4 @@ function index () {
     </Select>
   );
 }
-export default Select;
+export default index;

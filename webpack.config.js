@@ -50,6 +50,24 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader', // MiniCssExtractPlugin.loader,
+          },
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {
+            loader: 'postcss-loader',
+            options: require('./config/postcss.config'),
+          },
+          { 
+            loader: 'less-loader',
+            options: require('./config/less.config'),
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {

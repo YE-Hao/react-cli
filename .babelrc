@@ -14,6 +14,9 @@
         "regenerator": false,
         "useESModules": true
       }
-    ]
+    ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-proposal-export-namespace-from"
   ]
 }

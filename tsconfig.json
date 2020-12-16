@@ -33,6 +33,6 @@
     "dist",
     "scripts",
     "acceptance-tests",
-    "webpack"
+    "webpack",
   ]
 }
