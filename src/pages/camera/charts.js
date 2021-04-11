@@ -1,4 +1,5 @@
-import {message} from 'antd'
+import { message } from 'antd';
+
 export default class Chart {
   constructor(ws, remoteUserId, $) {
     this.mediaStream = null;
@@ -13,7 +14,7 @@ export default class Chart {
     this.pc = new RTCPeerConnection();
     // 向对方发送nat candidate
     this.pc.onicecandidate = event => {
-      if(!event.candidate) {
+      if (!event.candidate) {
         return;
       }
       console.log('send remote with my nat candidate', event.candidate);
@@ -22,40 +23,42 @@ export default class Chart {
         data: {
           candidate: event.candidate,
           remoteUserId: this.remoteUserId,
-        }
+        },
       });
-    }
+    };
     // 收到对方的视频流
     this.pc.onaddstream = event => {
       const { $ } = this;
       console.log('onaddstream trigger', event.stream);
       $('.remote-video').srcObject = event.stream;
-    }
+    };
     // 对方关闭
     this.pc.oniceconnectionstatechange = event => {
       console.log('signalingstatechange', this.pc.iceConnectionState);
       const { $ } = this;
-      if(this.pc.iceConnectionState === 'disconnected') {
+      if (this.pc.iceConnectionState === 'disconnected') {
         message.warn('对方关闭了链接！');
         $('.remote-video').srcObject = null;
         this.mediaStream.getVideoTracks()[0].stop();
         $('.video-box').style.display = 'none';
       }
-    }
+    };
   }
-  addCandidate(candidate){
+  addCandidate(candidate) {
     candidate && this.candidates.push(candidate);
-    if(this.setedRemoteDesc) {
-      this.candidates.forEach(cd => this.pc.addIceCandidate(new RTCIceCandidate(cd)));
+    if (this.setedRemoteDesc) {
+      this.candidates.forEach(cd =>
+        this.pc.addIceCandidate(new RTCIceCandidate(cd))
+      );
     }
   }
-  ring(){
+  ring() {
     message.info('正在呼叫对方...');
     this.ws.sendData({
-      type:'setUpCall',
+      type: 'setUpCall',
       data: {
-        remoteUserId: this.remoteUserId
-      }
+        remoteUserId: this.remoteUserId,
+      },
     });
   }
   // 收到对方的offer后进行响应
@@ -69,10 +72,10 @@ export default class Chart {
       type: 'answer',
       data: {
         desc: this.pc.localDescription,
-      }
+      },
     });
     this.setedRemoteDesc = true;
-    this.addCandidate()
+    this.addCandidate();
   }
   async onReceiveAnswer(offer) {
     console.log('onRecvAnswer', offer);
@@ -80,13 +83,13 @@ export default class Chart {
     this.setedRemoteDesc = true;
     this.addCandidate();
   }
-  async call () {
+  async call() {
     this.initConnect();
     await this.openMyCamera();
     this.sendOffer();
   }
-  async sendOffer (){
-    let offer = await this.pc.createOffer({
+  async sendOffer() {
+    const offer = await this.pc.createOffer({
       offerToReceiveAudio: true,
       offerToReceiveVideo: true,
     });
@@ -94,11 +97,11 @@ export default class Chart {
     this.ws.sendData({
       type: 'offer',
       data: {
-        desc: this.pc.localDescription
-      }
+        desc: this.pc.localDescription,
+      },
     });
   }
-  async openMyCamera () {
+  async openMyCamera() {
     const { $ } = this;
     $('.video-box').style.display = 'block';
     await this.showMyVideo();
@@ -108,24 +111,26 @@ export default class Chart {
     // });
   }
   showMyVideo() {
-    return navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((mediaStream) => {
-      const { $ } = this;
-      console.log('addStream');
-      this.pc.addStream(mediaStream);
-      this.mediaStream = mediaStream;
-      $('.my-video').srcObject = mediaStream;
-    });
+    return navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then(mediaStream => {
+        const { $ } = this;
+        console.log('addStream');
+        this.pc.addStream(mediaStream);
+        this.mediaStream = mediaStream;
+        $('.my-video').srcObject = mediaStream;
+      });
   }
-  stopMyVideo () {
+  stopMyVideo() {
     if (this.mediaStream) {
-        this.mediaStream.getVideoTracks()[0].stop();
-        this.mediaStream.getAudioTracks()[0].stop();
+      this.mediaStream.getVideoTracks()[0].stop();
+      this.mediaStream.getAudioTracks()[0].stop();
     }
   }
-  closeConnection () {
+  closeConnection() {
     const { $ } = this;
     this.pc.close();
     this.stopMyVideo();
     $('.video-box').style.display = 'none';
-}
+  }
 }
